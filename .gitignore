@@ -355,3 +355,9 @@ MigrationBackup/
 *.webp
 
 *.jpeg
+
+*.mp4
+
+*.pdf
+
+photos_boulangerie/.DS_Store
