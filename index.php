@@ -12,25 +12,36 @@
  */
 
 get_header(); ?>
-    <h1>je suis index.php</h1>
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+    <?php
+      get_header();?>
+Copy code
+<figure>
+    <video controls muted loop autoplay preload="auto" id="videoBoulangerie">
+        <?php
+            $video_id = 119; // ID de la vidéo dans les médias de WP
+            $video_url = wp_get_attachment_url( $video_id );
+        ?>
+        <source type="video/mp4" src="<?php echo $video_url; ?>"></source>
+    </video>
+</figure>
+      <?php if(have_posts()) :
+        while(have_posts()) : the_post();
 
-		<?php
-		if ( have_posts() ) :
+          // print_r(get_post_type());
+          // get_template_part( 'template-parts/content', get_post_type() );
 
-			get_template_part( 'loop' );
+        endwhile;
+      else :
 
-		else :
+        // get_template_part( 'template-parts/content', 'none' );
 
-			get_template_part( 'content', 'none' );
+      endif;
 
-		endif;
-		?>
+      do_action( 'storefront_sidebar' );
+      get_footer();
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+    ?>
 
-<?php
-do_action( 'storefront_sidebar' );
-get_footer();
+ <?php get_footer();?>
+
+
